@@ -49,6 +49,7 @@ class BottomNavigationTab extends FrameLayout {
     TextView labelView;
     ImageView iconView;
     TextView badgeView;
+    protected boolean mUseAnim = true;
 
     public BottomNavigationTab(Context context) {
         super(context);
@@ -131,20 +132,20 @@ class BottomNavigationTab extends FrameLayout {
 
     public void select(boolean setActiveColor, int animationDuration) {
         isActive = true;
-
-        ValueAnimator animator = ValueAnimator.ofInt(containerView.getPaddingTop(), paddingTopActive);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                containerView.setPadding(containerView.getPaddingLeft(),
-                        (Integer) valueAnimator.getAnimatedValue(),
-                        containerView.getPaddingRight(),
-                        containerView.getPaddingBottom());
-            }
-        });
-        animator.setDuration(animationDuration);
-        animator.start();
-
+        if(mUseAnim) {
+            ValueAnimator animator = ValueAnimator.ofInt(containerView.getPaddingTop(), paddingTopActive);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    containerView.setPadding(containerView.getPaddingLeft(),
+                            (Integer) valueAnimator.getAnimatedValue(),
+                            containerView.getPaddingRight(),
+                            containerView.getPaddingBottom());
+                }
+            });
+            animator.setDuration(animationDuration);
+            animator.start();
+        }
         iconView.setSelected(true);
         if (setActiveColor) {
             labelView.setTextColor(mActiveColor);
@@ -159,20 +160,20 @@ class BottomNavigationTab extends FrameLayout {
 
     public void unSelect(boolean setActiveColor, int animationDuration) {
         isActive = false;
-
-        ValueAnimator animator = ValueAnimator.ofInt(containerView.getPaddingTop(), paddingTopInActive);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                containerView.setPadding(containerView.getPaddingLeft(),
-                        (Integer) valueAnimator.getAnimatedValue(),
-                        containerView.getPaddingRight(),
-                        containerView.getPaddingBottom());
-            }
-        });
-        animator.setDuration(animationDuration);
-        animator.start();
-
+        if(mUseAnim) {
+            ValueAnimator animator = ValueAnimator.ofInt(containerView.getPaddingTop(), paddingTopInActive);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    containerView.setPadding(containerView.getPaddingLeft(),
+                            (Integer) valueAnimator.getAnimatedValue(),
+                            containerView.getPaddingRight(),
+                            containerView.getPaddingBottom());
+                }
+            });
+            animator.setDuration(animationDuration);
+            animator.start();
+        }
         labelView.setTextColor(mInActiveColor);
         iconView.setSelected(false);
 
@@ -222,5 +223,9 @@ class BottomNavigationTab extends FrameLayout {
             }
             iconView.setImageDrawable(mCompactIcon);
         }
+    }
+
+    public void animate(boolean useAnim){
+        this.mUseAnim = useAnim;
     }
 }

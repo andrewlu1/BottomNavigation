@@ -382,6 +382,7 @@ public class BottomNavigationBar extends FrameLayout {
 
                 for (BottomNavigationItem currentItem : mBottomNavigationItems) {
                     FixedBottomNavigationTab bottomNavigationTab = new FixedBottomNavigationTab(getContext());
+                    bottomNavigationTab.animate(currentItem.animate());
                     setUpTab(bottomNavigationTab, currentItem, itemWidth, itemWidth);
                 }
 
@@ -394,6 +395,7 @@ public class BottomNavigationBar extends FrameLayout {
 
                 for (BottomNavigationItem currentItem : mBottomNavigationItems) {
                     ShiftingBottomNavigationTab bottomNavigationTab = new ShiftingBottomNavigationTab(getContext());
+                    bottomNavigationTab.animate(true);
                     setUpTab(bottomNavigationTab, currentItem, itemWidth, itemActiveWidth);
                 }
             }

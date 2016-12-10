@@ -39,6 +39,7 @@ public class BottomNavigationItem {
     protected int mInActiveColor;
 
     protected BadgeItem mBadgeItem;
+    private boolean mUseAnim = true;
 
     /**
      * @param mIconResource resource for the Tab icon.
@@ -168,6 +169,18 @@ public class BottomNavigationItem {
         return this;
     }
 
+    /**
+     * @param useAnim if need animate when item Selected.
+     * @return note that shiftingitem must has anim.
+     */
+    public BottomNavigationItem animate(boolean useAnim){
+        this.mUseAnim = useAnim;
+        return this;
+    }
+
+    public boolean animate(){
+        return mUseAnim;
+    }
     /**
      * @param context to fetch drawable
      * @return icon drawable

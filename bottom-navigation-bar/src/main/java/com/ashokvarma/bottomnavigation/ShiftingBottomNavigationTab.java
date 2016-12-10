@@ -60,8 +60,8 @@ class ShiftingBottomNavigationTab extends BottomNavigationTab {
         ResizeWidthAnimation anim = new ResizeWidthAnimation(this, mActiveWidth);
         anim.setDuration(animationDuration);
         this.startAnimation(anim);
-
         labelView.animate().scaleY(1).scaleX(1).setDuration(animationDuration).start();
+
     }
 
     @Override
@@ -71,8 +71,8 @@ class ShiftingBottomNavigationTab extends BottomNavigationTab {
         ResizeWidthAnimation anim = new ResizeWidthAnimation(this, mInActiveWidth);
         anim.setDuration(animationDuration);
         this.startAnimation(anim);
-
         labelView.animate().scaleY(0).scaleX(0).setDuration(0).start();
+
     }
 
 //    @Override
